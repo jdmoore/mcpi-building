@@ -1,8 +1,8 @@
-package com.nocturnalcoding.mcpi-building;
+package com.nocturnalcoding.mcpi_building;
 
 import pi.Block;
-import com.nocturnalcoding.mcpi-building.Building;
-import com.nocturnalcoding.mcpi-building.VillagePlan;
+import com.nocturnalcoding.mcpi_building.Building;
+import com.nocturnalcoding.mcpi_building.VillagePlan;
 
 	/*
 	 * Under Construction

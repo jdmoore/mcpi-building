@@ -14,7 +14,7 @@
      * limitations under the License.
      */
 
-package com.nocturnalcoding.mcpi-building.src;
+package com.nocturnalcoding.mcpi_building;
 
 import java.lang.Math;
 
@@ -55,7 +55,6 @@ public class Building {
     protected int height;
     protected int width;
     protected int depth;
-    protected boolean ready;
 
     protected Building(int height, int depth, int width) {
         /*
@@ -84,17 +83,18 @@ public class Building {
         this.width = width;
         this.depth = depth;
         this.blueprint = new Block[height][depth][width];
-        this.ready = false;
+    }
         
 
-    public Building(Block[][][] blueprint) {
+    public Building(Block[][][] blueprint, int width) {
         // This constructor returns a complete building object, ready for printing
-        
+        // TODO: implement argument validation to confirm width is less than the length of the innermost array
+	// TODO: implement argument validation to confirm all arrays of a given level are the same length
+
         this.blueprint = blueprint; 
         this.height = blueprint.length;
         this.depth = blueprint[0].length;
-        this.width = blueprint[0][0].length;
-        this.ready = true;
+        this.width = width;
         
 
     }
@@ -113,31 +113,6 @@ public class Building {
     public Block[][][] getBlueprint() {
         return this.blueprint;
     }
-    
-    public boolean isReady() {
-        return this.ready;
-    }
-
-    public boolean setReady() {
-        for (int layer = 0; layer < height; layer++) {
-            // layer corresponds with the y axis
-
-            int tempY = y + layer;
-            for (int row = 0; row < depth; row++) {
-                // row corresponds with the z axis
-
-                int tempZ = z + row;
-                for (int column = 0; column < width; column++) {
-                    // column corresponds with the x axis
-			if (this.getBlock(column, layer, row) == None) {
-			    this.ready = false;
-			    return this.isReady();
-		 	}
-		}
-	    }
-	}
-	this.ready = true;
-    }
 
     public void setBlock(int x, int y, int z, Block block) {
 	this.blueprint[y][z][x] = block;
@@ -152,15 +127,13 @@ public class Building {
        /*
         * Throws IllegalArgumentException
         */
-        
-        if (!this.isReady) {
-            throw new IllegalArgumentException("Incomplete Building design.");
-        }
+
         
         // Block[][][] blueprint = this.getBlueprint();
         int height = this.getHeight();
         int width = this.getWidth();
         int depth = this.getDepth();
+
 
         Minecraft mc = Minecraft.connect();
 
