@@ -146,10 +146,15 @@ public class Building {
                 for (int column = 0; column < width; column++) {
                     // column corresponds with the x axis
                     int tempX = x + column;
-                    System.out.println("Coordinates = " + "x:" + column + ", y:" + layer + ", z:" + row);
+                    // System.out.println("Coordinates = " + "x:" + column + ", y:" + layer + ", z:" + row);
                     Block block = this.getBlock(column, layer, row); //blueprint[layer][row][column];
                     
-                    mc.setBlock(tempX, tempY, tempZ, block);
+		    if (block != null) {
+			mc.setBlock(tempX, tempY, tempZ, block);
+		    } else {
+			System.out.println("Block is null. No action taken");
+		    }
+                
                 }
 
             }

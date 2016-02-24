@@ -154,10 +154,10 @@ public enum VillagePlan {
 	}
 	
 	private static Block[][][] lampPost() {
-		Block[] airRow   = {Block.AIR, Block.AIR, Block.AIR};
-		Block[] postRow  = {Block.AIR, Block.FENCE, Block.AIR};
+		Block[] airRow   = {null, null, null};
+		Block[] postRow  = {null, Block.FENCE, null};
 		Block[] lampRow  = {Block.TORCH, Block.OBSIDIAN, Block.TORCH};
-		Block[] torchRow = {Block.AIR, Block.TORCH, Block.AIR};
+		Block[] torchRow = {null, Block.TORCH, null};
 				
 		Block[][] postLayer = {airRow, postRow, airRow};
 		Block[][] lampLayer = {torchRow, lampRow, torchRow};
@@ -190,33 +190,33 @@ public enum VillagePlan {
 								Block.COBBLESTONE, Block.COBBLESTONE};
 
 		// Block.STAIRS_COBBLESTONE.withData(3) orients the stair towards the building (north)
-		Block[] stairsRow            = {Block.AIR, Block.AIR, Block.STAIRS_COBBLESTONE.withData(3), 
-						Block.AIR, Block.AIR};
+		Block[] stairsRow            = {null, null, Block.STAIRS_COBBLESTONE.withData(3), 
+						null, null};
 
 		Block[] woodWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.WOOD_PLANKS, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] ladderRow            = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
-						Block.LADDER, Block.WOOD_PLANKS};
+		Block[] ladderRow            = {Block.WOOD_PLANKS, null, null, 
+						Block.LADDER.withData(3), Block.WOOD_PLANKS};
 
-		Block[] interiorRow          = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
-						Block.AIR, Block.WOOD_PLANKS};
+		Block[] interiorRow          = {Block.WOOD_PLANKS, null, null, 
+						null, Block.WOOD_PLANKS};
 
-		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.AIR, 
+		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, null, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] airRow               = {Block.AIR, Block.AIR, Block.AIR, Block.AIR, Block.AIR};
+		Block[] airRow               = {null, null, null, null, null};
 
 		Block[] oneWindowWallRow     = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.GLASS_PANE, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] twoWindowWallRow     = {Block.GLASS_PANE, Block.AIR, Block.AIR,
-						Block.AIR, Block.GLASS_PANE};
+		Block[] twoWindowWallRow     = {Block.GLASS_PANE, null, null,
+						null, Block.GLASS_PANE};
 
 		Block[] roofEdgeRow          = {Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD};
 
 		Block[] roofLadderRow        = {Block.WOOD, Block.WOOD_PLANKS, Block.WOOD_PLANKS,
-						Block.LADDER, Block.WOOD};
+						Block.LADDER.withData(3), Block.WOOD};
 
 		Block[] roofInteriorRow      = {Block.WOOD, Block.WOOD_PLANKS, Block.WOOD_PLANKS,
 						Block.WOOD_PLANKS, Block.WOOD};
@@ -224,7 +224,7 @@ public enum VillagePlan {
 		Block[] roofEdgeFenceRow     = {Block.FENCE, Block.FENCE, Block.FENCE, 
 						Block.FENCE, Block.FENCE};
 
-		Block[] roofInteriorFenceRow = {Block.FENCE, Block.AIR, Block.AIR, Block.AIR, Block.FENCE};
+		Block[] roofInteriorFenceRow = {Block.FENCE, null, null, null, Block.FENCE};
 			
 		Block[][] firstLayer = {cobblestoneRow,
 					cobblestoneRow,

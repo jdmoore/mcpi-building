@@ -13,17 +13,12 @@ public class VillageTest {
 		VillageBuilding house = new VillageBuilding(VillagePlan.SMALL_HOUSE);
 		System.out.println("Height = " + house.getHeight());
 		System.out.println("Width = " + house.getWidth());
-		house.build(0, 10, 0);
+		house.build(0, 0, 0);
 
 		VillageBuilding lamp = new VillageBuilding(VillagePlan.LAMP_POST);
 		System.out.println("Height = " + house.getHeight());
 		System.out.println("Width = " + house.getWidth());
-		lamp.build(15, 10, 0);
-
-		VillageBuilding farm = new VillageBuilding(VillagePlan.SMALL_FARM);
-		System.out.println("Height = " + house.getHeight());
-		System.out.println("Width = " + house.getWidth());
-		farm.build(30, 10, 0);
+		lamp.build(10, 0, 0);
 
 
 	}
