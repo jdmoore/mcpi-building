@@ -125,7 +125,8 @@ public class Building {
 
     public void build(int x, int y, int z) {
        /*
-        * Throws IllegalArgumentException
+        * When called on a VillageBuilding using the VillagePlan.WELL blueprint, set y to (ground level - 11) to
+	* bury the well properly.
         */
 
         

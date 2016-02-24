@@ -56,10 +56,10 @@ public enum VillagePlan {
 				return blueprint;
 			/*	
 			case LARGE_HOUSE:
-				break;
+				System.out.println("Large House Blueprint");
 				
 			case LIBRARY:
-				break;
+				System.out.println("Library Blueprint");
 			*/	
 			case SMALL_FARM:
 				//TODO: Test
@@ -75,12 +75,12 @@ public enum VillagePlan {
 				blueprint = smallHouse();
 				return blueprint;
 				
-			/*case WELL:
-			 *	System.out.println("Well Blueprint");
+			case WELL:
+				System.out.println("Well Blueprint");
 
 				blueprint = well();
 				return blueprint;
-			 */
+			 
 			default: System.out.println("Invalid type: returned new Block[0][0][0]");
 				 return new Block[0][0][0];
 		}
@@ -154,12 +154,12 @@ public enum VillagePlan {
 	}
 	
 	private static Block[][][] lampPost() {
-		Block[] airRow   = {null, null, null};
+		Block[] nullRow   = {null, null, null};
 		Block[] postRow  = {null, Block.FENCE, null};
 		Block[] lampRow  = {Block.TORCH, Block.OBSIDIAN, Block.TORCH};
 		Block[] torchRow = {null, Block.TORCH, null};
 				
-		Block[][] postLayer = {airRow, postRow, airRow};
+		Block[][] postLayer = {nullRow, postRow, nullRow};
 		Block[][] lampLayer = {torchRow, lampRow, torchRow};
 				
 		Block[][][] lampBlueprint = {postLayer,	postLayer, postLayer, lampLayer};
@@ -196,22 +196,22 @@ public enum VillagePlan {
 		Block[] woodWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.WOOD_PLANKS, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] ladderRow            = {Block.WOOD_PLANKS, null, null, 
+		Block[] ladderRow            = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
 						Block.LADDER.withData(3), Block.WOOD_PLANKS};
 
-		Block[] interiorRow          = {Block.WOOD_PLANKS, null, null, 
-						null, Block.WOOD_PLANKS};
+		Block[] interiorRow          = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
+						Block.AIR, Block.WOOD_PLANKS};
 
-		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, null, 
+		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.AIR, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] airRow               = {null, null, null, null, null};
+		Block[] nullRow               = {null, null, null, null, null};
 
 		Block[] oneWindowWallRow     = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.GLASS_PANE, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] twoWindowWallRow     = {Block.GLASS_PANE, null, null,
-						null, Block.GLASS_PANE};
+		Block[] twoWindowWallRow     = {Block.GLASS_PANE, Block.AIR, Block.AIR,
+						Block.AIR, Block.GLASS_PANE};
 
 		Block[] roofEdgeRow          = {Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD};
 
@@ -238,39 +238,114 @@ public enum VillagePlan {
 					interiorRow,
 					interiorRow,
 					doorWallRow,
-					airRow};
+					nullRow};
 
 		Block[][] thirdLayer = {oneWindowWallRow,
 					ladderRow,
 					twoWindowWallRow,
 					interiorRow,
 					doorWallRow,
-					airRow};
+					nullRow};
 
 		Block[][] fourthLayer = {woodWallRow,
 					ladderRow,
 					interiorRow,
 					interiorRow,
 					doorWallRow,
-					airRow};
+					nullRow};
 
 		Block[][] fifthLayer = {roofEdgeRow,
 					roofLadderRow,
 					roofInteriorRow,
 					roofInteriorRow,
 					roofEdgeRow,
-					airRow};
+					nullRow};
 
 		Block[][] sixthLayer = {roofEdgeFenceRow,
 					roofInteriorFenceRow,
 					roofInteriorFenceRow,
 					roofInteriorFenceRow,
 					roofEdgeFenceRow,
-					airRow};
+					nullRow};
 
 		Block[][][] smallHouseBlueprint = {firstLayer, secondLayer, thirdLayer,
 						fourthLayer, fifthLayer, sixthLayer};
 		return smallHouseBlueprint;
+	}
+
+	private static Block[][][] well() {
+		Block[] nullRow = {null, null, null, null, null, null};
+
+		Block[] baseRow = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, null};
+
+		Block[] shaftRow = {null, Block.COBBLESTONE, Block.WATER, Block.WATER, Block.COBBLESTONE, null};
+
+		Block[] gravelRow = {Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL};
+
+		Block[] groundRow = {Block.GRAVEL, Block.COBBLESTONE, Block.COBBLESTONE,
+					Block.COBBLESTONE, Block.COBBLESTONE, Block.GRAVEL};
+
+		Block[] groundShaftRow = {Block.GRAVEL, Block.COBBLESTONE, Block.WATER,
+					Block.WATER, Block.COBBLESTONE, Block.GRAVEL};
+
+		Block[] rimShaftRow = {null, Block.COBBLESTONE, Block.AIR, Block.AIR, Block.COBBLESTONE, null};
+
+		Block[] airRow = {null, Block.AIR, Block.AIR, Block.AIR, Block.AIR, null};
+		Block[] postRow = {null, Block.FENCE, Block.AIR, Block.AIR, Block.FENCE, null};
+		
+
+		Block[][] baseLayer  = {nullRow,
+					baseRow,
+					baseRow,
+					baseRow,
+					baseRow,
+					nullRow};
+
+		Block[][] shaftLayer = {nullRow,
+					baseRow,
+					shaftRow,
+					shaftRow,
+					baseRow,
+					nullRow};
+
+		Block[][] groundLayer = {gravelRow,
+					groundRow,
+					groundShaftRow,
+					groundShaftRow,
+					groundRow,
+					gravelRow};
+
+		Block[][] rimLayer   = {nullRow,
+					baseRow,
+					rimShaftRow,
+					rimShaftRow,
+					baseRow,
+					nullRow};
+
+		Block[][] postLayer  = {nullRow,
+					postRow,
+					airRow,
+					airRow,
+					postRow,
+					nullRow};
+		
+		Block[][][] wellBlueprint    = {baseLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						shaftLayer,
+						groundLayer,
+						rimLayer,
+						postLayer,
+						postLayer,
+						baseLayer};
+		return wellBlueprint;
 	}
 
 }
