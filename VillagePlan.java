@@ -19,13 +19,12 @@ public enum VillagePlan {
 	 * (Not Implemented) WELL should be called with at y = -11. given that y is the desired "ground level."
 	 */
 
-	BLACKSMITH, BUTCHER_SHOP, CHURCH, LAMP_POST, LARGE_HOUSE, LIBRARY, SMALL_FARM, SMALL_HOUSE, WELL;
+	BLACKSMITH, BUTCHER_SHOP, CHURCH, LAMP_POST, LARGE_HOUSE, 
+	LIBRARY, ROAD, SMALL_FARM, SMALL_HOUSE, WELL;
 
 	public Block[][][] getBlueprint() {
 		// TODO: Test
-		// TODO: fix ladder issue
-		// TODO: fix torch issue
-		// TODO: implement BLACKSMITH, BUTCHER_SHOP, CHURCH, FARM, LAMP_POST, LARGE_HOUSE, LIBRARY, and, WELL
+		// TODO: implement BLACKSMITH, BUTCHER_SHOP, LARGE_HOUSE, LIBRARY, ROAD
 
 		Block[][][] blueprint;
 		switch (this) {
@@ -41,13 +40,13 @@ public enum VillagePlan {
 
 				blueprint = butcherShop();
 				return blueprint();
-				
+			*/	
 			case CHURCH:
 				System.out.println("Church Blueprint");
 
 				blueprint = church();
 				return blueprint;
-			*/	
+			
 			case LAMP_POST:
 				// TODO: Test
 				System.out.println("Lamp Post Blueprint");
@@ -58,9 +57,21 @@ public enum VillagePlan {
 			case LARGE_HOUSE:
 				System.out.println("Large House Blueprint");
 				
+				blueprint = largeHouse();
+				return blueprint;
+				
 			case LIBRARY:
 				System.out.println("Library Blueprint");
+				
+				blueprint = library();
+				return blueprint;
 			*/	
+			case ROAD:
+				System.out.println("Road Blueprint");
+				
+				blueprint = Road();
+				return blueprint;
+			
 			case SMALL_FARM:
 				//TODO: Test
 				System.out.println("Small Farm Blueprint");
@@ -120,6 +131,7 @@ public enum VillagePlan {
 		}
 	}
 
+	@Override
 	public String toString() {
 	
 		switch (this) {
@@ -153,6 +165,160 @@ public enum VillagePlan {
 	
 	}
 	
+	private static Block[][][] church() {
+		//TODO: Test
+		
+		Block[] backWall = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, null};
+		
+		Block[] cobblestoneRow = this.genBlockRow(Block.COBBLESTONE);
+		Block[] nullRow = this.genNullRow();
+		
+		// Block.STAIRS_COBBLESTONE.withData(3) orients the stair towards the building (north)
+		Block[] entryStairsRow = {null, null, Block.COBBLESTONE_STAIRS.withData(3), null, null};
+		
+		Block[] oneStairRow = {Block.COBBLESTONE, Block.COBBLESTONE, 
+				Block.COBBLESTONE_STAIRS.withData(3), Block.COBBLESTONE, Block.COBBLESTONE};
+		
+		Block[] twoStairRow = {Block.COBBLESTONE, Block.COBBLESTONE_STAIRS.withData(3), 
+			Block.AIR, Block.COBBLESTONE_STAIRS.withData(3), Block.COBBLESTONE};
+			
+		Blcok[] interiorRow = this.genInteriorRow(Block.COBBLESTONE);
+		
+		Block[] ladderRow = {Block.COBBLESTONE, Block.LADDER, Block.AIR, Block.AIR,
+				Block.COBBLESTONE};
+		
+		Block[] ladderFloorRow = {Block.COBBLESTONE, Block.LADDER, Block.COBBLESTONE,
+				Block.COBBLESTONE, Block.COBBLESTONE};
+		
+		Block[] windowsRow = this.genInteriorRow(Block.GLASS_PANE);
+		Block[] singleWindowRow = {null, Block.COBBLESTONE, Block.GLASS_PANE, Block.COBBLESTONE,
+				null};
+		
+		Block[] torchRow = {Block.COBBLESTONE, Block.AIR, Block.TORCH, Block.AIR,
+				Block.COBBLESTONE};
+		
+		Block[] twoTorchRow = {Block.COBBLESTONE, Block.TORCH, Block.AIR, Block.TORCH,
+				Block.COBBLESTONE};
+		
+		Block[] doorRow = {null, Block.COBBLESTONE, Block.DOOR_WOOD, Block.COBBLESTONE, null};
+		Block[] doorwayRow = {null, Block.COBBLESTONE, Block.null, Block.COBBLESTONE, null};
+		
+		Block[] singleBlockRow{null, null, Block.COBBLESTONE, null, null};
+		
+		Block[][] firstLayer = {backWall,
+								cobblestoneRow,
+								cobblestoneRow,
+								cobblestoneRow,
+								cobblestoneRow,
+								backWall,
+								backWall,
+								backWall,
+								backWall,
+								entryStairsRow};
+		
+		Block[][] secondLayer = {backWall,
+								cobblestoneRow,
+								oneStairRow,
+								twoStairRow,
+								interiorRow,
+								ladderRow,
+								interiorRow,
+								interiorRow,
+								doorRow,
+								nullRow};
+		
+		Block[][] thirdLayer = {backWall,
+								twoStairRow,
+								interiorRow,
+								interiorRow,
+								interiorRow,
+								ladderRow,
+								windowsRow,
+								interiorRow,
+								doorwayRow,
+								nullRow};
+		
+		Block[][] forthLayer = {singleWindowRow,
+								interiorRow,
+								windowsRow,
+								interiorRow,
+								interiorRow,
+								ladderRow,
+								windowsRow,
+								interiorRow,
+								backWall,
+								nullRow};
+		
+		Block[][] fifthLayer = {backWall, 
+								torchRow, 
+								twoTorchRow, 
+								torchRow, 
+								cobblestoneRow,
+								ladderFloorRow, 
+								cobblestoneRow, 
+								cobblestoneRow, 
+								cobblestoneRow, 
+								nullRow};
+		
+		Block[][] sixthLayer = {nullRow, 
+								backWall, 
+								backWall,
+								backWall, 
+								backWall,
+								ladderRow,
+								interiorRow,
+								interiorRow,
+								backWall,
+								nullRow};
+		
+		Block[][] seventhEighthLayer = {nullRow, nullRow, nullRow, nullRow,
+										singleWindowRow,
+										ladderRow,
+										windowsRow,
+										interiorRow,
+										singleWindowRow,
+										nullRow};
+		
+		Block[][] ninthLayer = {nullRow, nullRow, nullRow, nullRow,
+								backWall,
+								ladderRow,
+								interiorRow, interiorRow,
+								backWall,
+								nullRow};
+		
+		Block[][] tenthLayer = {nullRow, nullRow, nullRow, nullRow,
+								cobblestoneRow,
+								ladderRow,
+								cobblestoneRow, cobblestoneRow, cobblestoneRow,
+								nullRow};
+		
+		Block[][] eleventhLayer = {nullRow, nullRow, nullRow, nullRow,
+									backWall,
+									interiorWall, interiorWall, interiorWall,
+									nullRow};
+		
+		Block[][] twelthLayer = {nullRow, nullRow, nullRow, nullRow,
+								singleBlockRow,
+								nullRow,
+								interiorWall,
+								nullRow,
+								singleBlockRow,
+								nullRow};
+		
+		Block[][][] churchBlueprint = {firstLayer,
+										secondLayer,
+										thirdLayer,
+										forthLayer,
+										fifthLayer,
+										sixthLayer,
+										seventhEighthLayer,
+										ninthLayer,
+										tenthLayer,
+										eleventhLayer,
+										twelthLayer};
+		return churchBlueprint;
+	}
+	
 	private static Block[][][] lampPost() {
 		Block[] nullRow   = {null, null, null};
 		Block[] postRow  = {null, Block.FENCE, null};
@@ -167,6 +333,16 @@ public enum VillagePlan {
 		return lampBlueprint;
 	}
 
+	private static Block[][][] road() {
+		// returns blueprints for a 3x3 square of gravel road
+		Block[] gravelRow = this.genBlockRow(Block.GRAVEL);
+		
+		Block[][] roadLayer = {gravelRow, gravelRow, gravelRow};
+		
+		Block[][][] roadBlueprint = {roadLayer};
+		return roadBlueprint;
+	}
+	
 	private static Block[][][] smallFarm() {
 		Block[] woodRow = {Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD};
 		Block[] soilRow = {Block.WOOD, Block.DIRT, Block.DIRT, Block.WATER, Block.DIRT, Block.DIRT, Block.WOOD};
@@ -186,8 +362,7 @@ public enum VillagePlan {
 	}
 
 	private static Block[][][] smallHouse() {
-		Block[] cobblestoneRow       = {Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE,
-								Block.COBBLESTONE, Block.COBBLESTONE};
+		Block[] cobblestoneRow       = this.genCobblestoneRow();
 
 		// Block.STAIRS_COBBLESTONE.withData(3) orients the stair towards the building (north)
 		Block[] stairsRow            = {null, null, Block.STAIRS_COBBLESTONE.withData(3), 
@@ -205,7 +380,7 @@ public enum VillagePlan {
 		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.AIR, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] nullRow               = {null, null, null, null, null};
+		Block[] nullRow               = this.genNullRow();
 
 		Block[] oneWindowWallRow     = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.GLASS_PANE, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
@@ -348,4 +523,35 @@ public enum VillagePlan {
 		return wellBlueprint;
 	}
 
+	private Block[] genBlockRow(Block block) {
+		int width = this.getWidth();
+		Block[] row = new Block[width];
+		for (cell : row) {
+			cell = block;
+		}
+		return row;
+	}
+	
+	private Block[] genNullRow() {
+		int width = this.getWidth();
+		Block[] row = new Block[width];
+		for (cell : row) {
+			cell = null;
+		}
+		return row;
+	}
+	
+	private Block[] genInteriorRow(Block wallBlock) {
+		int width = this.getWidth();
+		int lastCell = width - 1;
+		Block[] row = new Block[width];
+		for (cell : row) {
+			cell = Block.AIR;
+		}
+		row[0] = wallBlock;
+		row[lastCell] = wallBlock;
+		
+		return row;
+	}
+	
 }
