@@ -24,7 +24,7 @@ public enum VillagePlan {
 
 	public Block[][][] getBlueprint() {
 		// TODO: Test
-		// TODO: implement BLACKSMITH, BUTCHER_SHOP, LARGE_HOUSE, LIBRARY, ROAD
+		// TODO: implement BLACKSMITH, BUTCHER_SHOP, LARGE_HOUSE, LIBRARY
 
 		Block[][][] blueprint;
 		switch (this) {
@@ -107,6 +107,9 @@ public enum VillagePlan {
 			
 			case CHURCH:
 				return 5;
+				
+			case ROAD:
+				return 3;
 			
 			case LAMP_POST:
 				return 3;
@@ -152,6 +155,9 @@ public enum VillagePlan {
 				
 			case LIBRARY:
 				return "LIBRARY";
+				
+			case ROAD:
+				return "ROAD";
 				
 			case SMALL_FARM:
 				return "SMALL_FARM";
