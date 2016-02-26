@@ -350,7 +350,7 @@ public enum VillagePlan {
 	}
 	
 	private static Block[][][] smallFarm() {
-		Block[] woodRow = {Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD};
+		Block[] woodRow = this.genBlockRow(Block.WOOD);
 		Block[] soilRow = {Block.WOOD, Block.DIRT, Block.DIRT, Block.WATER, Block.DIRT, Block.DIRT, Block.WOOD};
 				
 		Block[][] firstLayer = {woodRow,
@@ -380,8 +380,7 @@ public enum VillagePlan {
 		Block[] ladderRow            = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
 						Block.LADDER.withData(3), Block.WOOD_PLANKS};
 
-		Block[] interiorRow          = {Block.WOOD_PLANKS, Block.AIR, Block.AIR, 
-						Block.AIR, Block.WOOD_PLANKS};
+		Block[] interiorRow          = this.genInteriorRow(Block.WOOD_PLANKS);
 
 		Block[] doorWallRow          = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.AIR, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
@@ -391,10 +390,9 @@ public enum VillagePlan {
 		Block[] oneWindowWallRow     = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.GLASS_PANE, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] twoWindowWallRow     = {Block.GLASS_PANE, Block.AIR, Block.AIR,
-						Block.AIR, Block.GLASS_PANE};
+		Block[] twoWindowWallRow     =  this.genInteriorRow(Block.GLASS_PANE)
 
-		Block[] roofEdgeRow          = {Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD, Block.WOOD};
+		Block[] roofEdgeRow          = this.genBlockRow(Block.WOOD);
 
 		Block[] roofLadderRow        = {Block.WOOD, Block.WOOD_PLANKS, Block.WOOD_PLANKS,
 						Block.LADDER.withData(3), Block.WOOD};
@@ -402,8 +400,7 @@ public enum VillagePlan {
 		Block[] roofInteriorRow      = {Block.WOOD, Block.WOOD_PLANKS, Block.WOOD_PLANKS,
 						Block.WOOD_PLANKS, Block.WOOD};
 
-		Block[] roofEdgeFenceRow     = {Block.FENCE, Block.FENCE, Block.FENCE, 
-						Block.FENCE, Block.FENCE};
+		Block[] roofEdgeFenceRow     = this.genBlockRow(Block.FENCE);
 
 		Block[] roofInteriorFenceRow = {Block.FENCE, null, null, null, Block.FENCE};
 			
@@ -457,11 +454,13 @@ public enum VillagePlan {
 	private static Block[][][] well() {
 		Block[] nullRow = {null, null, null, null, null, null};
 
-		Block[] baseRow = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, null};
+		Block[] baseRow = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE,
+						Block.COBBLESTONE, null};
 
-		Block[] shaftRow = {null, Block.COBBLESTONE, Block.WATER, Block.WATER, Block.COBBLESTONE, null};
+		Block[] shaftRow = {null, Block.COBBLESTONE, Block.WATER, Block.WATER,
+						Block.COBBLESTONE, null};
 
-		Block[] gravelRow = {Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL, Block.GRAVEL};
+		Block[] gravelRow = this.genBlockRow(Block.GRAVEL);
 
 		Block[] groundRow = {Block.GRAVEL, Block.COBBLESTONE, Block.COBBLESTONE,
 					Block.COBBLESTONE, Block.COBBLESTONE, Block.GRAVEL};
