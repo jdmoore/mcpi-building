@@ -17,9 +17,12 @@
 package com.nocturnalcoding.mcpi_building;
 
 import java.lang.Math;
+import java.util.ArrayList<E>;
 
 import pi.Minecraft;
 import pi.Block;
+
+import com.nocturnalcoding.mcpi_building.Direction;
 
 	/*
 	 * Under Construction
@@ -123,12 +126,21 @@ public class Building {
     }
 
 
-    public void build(int x, int y, int z) {
+    public void build(Direction direction, int x, int y, int z) {
        /*
         * When called on a VillageBuilding using the VillagePlan.WELL blueprint, set y to (ground level - 11) to
 	* bury the well properly.
         */
 
+    	ArrayList orientedBlocks = new ArrayList();
+    	orientedBlocks.add(Block.COBBLESTONE_STAIRS);
+    	orientedBlocks.add(Block.WOOD_STAIRS);
+    	orientedBlocks.add(Block.LADDER);
+    	orientedBlocks.add(Block.CHEST);
+    	orientedBlocks.add(Block.FURNACE);
+    	orientedBlocks.add(Block.FENCE_GATE);
+    	orientedBlocks.add(Block.DOOR_WOOD);
+    	orientedBlocks.add(Block.DOORE_IRON);
         
         // Block[][][] blueprint = this.getBlueprint();
         int height = this.getHeight();
@@ -150,11 +162,14 @@ public class Building {
                     // System.out.println("Coordinates = " + "x:" + column + ", y:" + layer + ", z:" + row);
                     Block block = this.getBlock(column, layer, row); //blueprint[layer][row][column];
                     
-		    if (block != null) {
-			mc.setBlock(tempX, tempY, tempZ, block);
-		    } else {
-			System.out.println("Block is null. No action taken");
-		    }
+                    if (orientedBlocks.contains(block)) {
+                    	block = direction.orient(block);
+                    }
+                    if (block != null) {
+                    	mc.setBlock(tempX, tempY, tempZ, block);
+                    } else {
+                    	System.out.println("Block is null. No action taken");
+                    }
                 
                 }
 
