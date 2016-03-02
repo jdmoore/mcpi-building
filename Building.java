@@ -17,7 +17,7 @@
 package com.nocturnalcoding.mcpi_building;
 
 import java.lang.Math;
-import java.util.ArrayList<E>;
+import java.util.ArrayList;
 
 import pi.Minecraft;
 import pi.Block;
@@ -133,14 +133,15 @@ public class Building {
         */
 
     	ArrayList orientedBlocks = new ArrayList();
-    	orientedBlocks.add(Block.COBBLESTONE_STAIRS);
-    	orientedBlocks.add(Block.WOOD_STAIRS);
+    	orientedBlocks.add(Block.STAIRS_COBBLESTONE);
+    	orientedBlocks.add(Block.STAIRS_WOOD);
     	orientedBlocks.add(Block.LADDER);
     	orientedBlocks.add(Block.CHEST);
-    	orientedBlocks.add(Block.FURNACE);
+    	orientedBlocks.add(Block.FURNACE_ACTIVE);
+    	orientedBlocks.add(Block.FURNACE_INACTIVE);
     	orientedBlocks.add(Block.FENCE_GATE);
     	orientedBlocks.add(Block.DOOR_WOOD);
-    	orientedBlocks.add(Block.DOORE_IRON);
+    	orientedBlocks.add(Block.DOOR_IRON);
         
         // Block[][][] blueprint = this.getBlueprint();
         int height = this.getHeight();

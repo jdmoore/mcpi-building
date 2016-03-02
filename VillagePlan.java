@@ -32,45 +32,45 @@ public enum VillagePlan {
 			case BLACKSMITH:
 				System.out.println("Blacksmith Blueprint");
 
-				blueprint = blacksmith();
+				blueprint = this.blacksmith();
 				return blueprint;
 				
 			case BUTCHER_SHOP:
 				System.out.println("Butcher Shop Blueprint");
 
-				blueprint = butcherShop();
-				return blueprint();
+				blueprint = this.butcherShop();
+				return blueprint;
 			*/	
 			case CHURCH:
 				System.out.println("Church Blueprint");
 
-				blueprint = church();
+				blueprint = this.church();
 				return blueprint;
 			
 			case LAMP_POST:
 				// TODO: Test
 				System.out.println("Lamp Post Blueprint");
 				
-				blueprint = lampPost();
+				blueprint = this.lampPost();
 				return blueprint;
 			/*	
 			case LARGE_HOUSE:
 				System.out.println("Large House Blueprint");
 				
-				blueprint = largeHouse();
+				blueprint = this.largeHouse();
 				return blueprint;
 				
 			case LIBRARY:
 				System.out.println("Library Blueprint");
 				
-				blueprint = library();
+				blueprint = this.library();
 				return blueprint;
 			*/	
 			case ROAD:
 				//TODO: test
 				System.out.println("Road Blueprint");
 				
-				blueprint = Road();
+				blueprint = this.road();
 				return blueprint;
 			
 			case SMALL_FARM:
@@ -78,19 +78,19 @@ public enum VillagePlan {
 				System.out.println("Small Farm Blueprint");
 				
 			
-				blueprint = smallFarm();
+				blueprint = this.smallFarm();
 				return blueprint;
 				
 			case SMALL_HOUSE:
 				System.out.println("Small House Blueprint");
 
-				blueprint = smallHouse();
+				blueprint = this.smallHouse();
 				return blueprint;
 				
 			case WELL:
 				System.out.println("Well Blueprint");
 
-				blueprint = well();
+				blueprint = this.well();
 				return blueprint;
 			 
 			default: System.out.println("Invalid type: returned new Block[0][0][0]");
@@ -172,7 +172,7 @@ public enum VillagePlan {
 	
 	}
 	
-	private static Block[][][] church() {
+	private Block[][][] church() {
 		//TODO: Test
 		
 		Block[] backWall = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE, null};
@@ -181,15 +181,15 @@ public enum VillagePlan {
 		Block[] nullRow = this.genNullRow();
 		
 		// Block.STAIRS_COBBLESTONE.withData(3) orients the stair towards the building (north)
-		Block[] entryStairsRow = {null, null, Block.COBBLESTONE_STAIRS.withData(3), null, null};
+		Block[] entryStairsRow = {null, null, Block.STAIRS_COBBLESTONE.withData(3), null, null};
 		
 		Block[] oneStairRow = {Block.COBBLESTONE, Block.COBBLESTONE, 
-				Block.COBBLESTONE_STAIRS.withData(3), Block.COBBLESTONE, Block.COBBLESTONE};
+				Block.STAIRS_COBBLESTONE.withData(3), Block.COBBLESTONE, Block.COBBLESTONE};
 		
-		Block[] twoStairRow = {Block.COBBLESTONE, Block.COBBLESTONE_STAIRS.withData(3), 
-			Block.AIR, Block.COBBLESTONE_STAIRS.withData(3), Block.COBBLESTONE};
+		Block[] twoStairRow = {Block.COBBLESTONE, Block.STAIRS_COBBLESTONE.withData(3), 
+			Block.AIR, Block.STAIRS_COBBLESTONE.withData(3), Block.COBBLESTONE};
 			
-		Blcok[] interiorRow = this.genInteriorRow(Block.COBBLESTONE);
+		Block[] interiorRow = this.genInteriorRow(Block.COBBLESTONE);
 		
 		Block[] ladderRow = {Block.COBBLESTONE, Block.LADDER, Block.AIR, Block.AIR,
 				Block.COBBLESTONE};
@@ -208,9 +208,9 @@ public enum VillagePlan {
 				Block.COBBLESTONE};
 		
 		Block[] doorRow = {null, Block.COBBLESTONE, Block.DOOR_WOOD, Block.COBBLESTONE, null};
-		Block[] doorwayRow = {null, Block.COBBLESTONE, Block.null, Block.COBBLESTONE, null};
+		Block[] doorwayRow = {null, Block.COBBLESTONE, null, Block.COBBLESTONE, null};
 		
-		Block[] singleBlockRow{null, null, Block.COBBLESTONE, null, null};
+		Block[] singleBlockRow = {null, null, Block.COBBLESTONE, null, null};
 		
 		Block[][] firstLayer = {backWall,
 								cobblestoneRow,
@@ -301,13 +301,13 @@ public enum VillagePlan {
 		
 		Block[][] eleventhLayer = {nullRow, nullRow, nullRow, nullRow,
 									backWall,
-									interiorWall, interiorWall, interiorWall,
+									interiorRow, interiorRow, interiorRow,
 									nullRow};
 		
 		Block[][] twelthLayer = {nullRow, nullRow, nullRow, nullRow,
 								singleBlockRow,
 								nullRow,
-								interiorWall,
+								interiorRow,
 								nullRow,
 								singleBlockRow,
 								nullRow};
@@ -326,7 +326,7 @@ public enum VillagePlan {
 		return churchBlueprint;
 	}
 	
-	private static Block[][][] lampPost() {
+	private Block[][][] lampPost() {
 		Block[] nullRow   = {null, null, null};
 		Block[] postRow  = {null, Block.FENCE, null};
 		Block[] lampRow  = {Block.TORCH, Block.OBSIDIAN, Block.TORCH};
@@ -340,7 +340,7 @@ public enum VillagePlan {
 		return lampBlueprint;
 	}
 
-	private static Block[][][] road() {
+	private Block[][][] road() {
 		// returns blueprints for a 3x3 square of gravel road
 		Block[] gravelRow = this.genBlockRow(Block.GRAVEL);
 		
@@ -350,7 +350,7 @@ public enum VillagePlan {
 		return roadBlueprint;
 	}
 	
-	private static Block[][][] smallFarm() {
+	private Block[][][] smallFarm() {
 		Block[] woodRow = this.genBlockRow(Block.WOOD);
 		Block[] soilRow = {Block.WOOD, Block.DIRT, Block.DIRT, Block.WATER, Block.DIRT, Block.DIRT, Block.WOOD};
 				
@@ -368,8 +368,8 @@ public enum VillagePlan {
 		return farmBlueprint;
 	}
 
-	private static Block[][][] smallHouse() {
-		Block[] cobblestoneRow       = this.genCobblestoneRow();
+	private Block[][][] smallHouse() {
+		Block[] cobblestoneRow       = this.genBlockRow(Block.COBBLESTONE);
 
 		// Block.STAIRS_COBBLESTONE.withData(3) orients the stair towards the building (north)
 		Block[] stairsRow            = {null, null, Block.STAIRS_COBBLESTONE.withData(3), 
@@ -391,7 +391,7 @@ public enum VillagePlan {
 		Block[] oneWindowWallRow     = {Block.COBBLESTONE, Block.WOOD_PLANKS, Block.GLASS_PANE, 
 						Block.WOOD_PLANKS, Block.COBBLESTONE};
 
-		Block[] twoWindowWallRow     =  this.genInteriorRow(Block.GLASS_PANE)
+		Block[] twoWindowWallRow     =  this.genInteriorRow(Block.GLASS_PANE);
 
 		Block[] roofEdgeRow          = this.genBlockRow(Block.WOOD);
 
@@ -452,7 +452,7 @@ public enum VillagePlan {
 		return smallHouseBlueprint;
 	}
 
-	private static Block[][][] well() {
+	private Block[][][] well() {
 		Block[] nullRow = {null, null, null, null, null, null};
 
 		Block[] baseRow = {null, Block.COBBLESTONE, Block.COBBLESTONE, Block.COBBLESTONE,
@@ -532,7 +532,7 @@ public enum VillagePlan {
 	private Block[] genBlockRow(Block block) {
 		int width = this.getWidth();
 		Block[] row = new Block[width];
-		for (cell : row) {
+		for (Block cell : row) {
 			cell = block;
 		}
 		return row;
@@ -541,7 +541,7 @@ public enum VillagePlan {
 	private Block[] genNullRow() {
 		int width = this.getWidth();
 		Block[] row = new Block[width];
-		for (cell : row) {
+		for (Block cell : row) {
 			cell = null;
 		}
 		return row;
@@ -551,7 +551,7 @@ public enum VillagePlan {
 		int width = this.getWidth();
 		int lastCell = width - 1;
 		Block[] row = new Block[width];
-		for (cell : row) {
+		for (Block cell : row) {
 			cell = Block.AIR;
 		}
 		row[0] = wallBlock;
