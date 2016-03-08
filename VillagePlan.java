@@ -548,8 +548,8 @@ public enum VillagePlan {
 	private Block[] genBlockRow(Block block) {
 		int width = this.getWidth();
 		Block[] row = new Block[width];
-		for (Block cell : row) {
-			cell = block;
+		for (int cell = 0; cell < width; cell++) {
+			row[cell] = block;
 		}
 		return row;
 	}
@@ -557,8 +557,8 @@ public enum VillagePlan {
 	private Block[] genNullRow() {
 		int width = this.getWidth();
 		Block[] row = new Block[width];
-		for (Block cell : row) {
-			cell = null;
+		for (int cell = 0; cell < width; cell++) {
+			row[cell] = null;
 		}
 		return row;
 	}
@@ -567,8 +567,8 @@ public enum VillagePlan {
 		int width = this.getWidth();
 		int lastCell = width - 1;
 		Block[] row = new Block[width];
-		for (Block cell : row) {
-			cell = Block.AIR;
+		for (int cell = 0; cell < width; cell++) {
+			row[cell] = Block.AIR;
 		}
 		row[0] = wallBlock;
 		row[lastCell] = wallBlock;
